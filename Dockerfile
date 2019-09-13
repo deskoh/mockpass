@@ -12,6 +12,8 @@ RUN npm install
 
 COPY --chown=node:node . .
 
+ENV SHOW_LOGIN_PAGE=true
+
 EXPOSE 5156
 
 CMD ["node", "index.js"]
