@@ -1,19 +1,11 @@
-FROM node:10-alpine
+FROM node:latest
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /usr/src/mockpass
 
-WORKDIR /home/node/app
+COPY package* ./
 
-COPY package*.json ./
+RUN npm ci
 
-USER node
-
-RUN npm install
-
-COPY --chown=node:node . .
-
-ENV SHOW_LOGIN_PAGE=true
-
-EXPOSE 5156
+COPY . ./
 
 CMD ["node", "index.js"]
